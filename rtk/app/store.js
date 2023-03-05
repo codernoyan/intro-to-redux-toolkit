@@ -7,7 +7,7 @@ const logger = createLogger();
 
 const store = configureStore({
   reducer: {
-    videos: videosReducer,
+    video: videosReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
