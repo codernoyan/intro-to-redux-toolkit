@@ -1,9 +1,9 @@
 const store = require('./rtk/app/store');
 const { fetchVideo, fetchRelatedVidoes } = require('./rtk/features/asyncVideo/asyncVideoSlice');
 
-store.subscribe(() => {
-  // console.log(store.getState().video?.video?.tags)
-});
+// store.subscribe(() => {
+//   // console.log(store.getState().video?.video?.tags)
+// });
 
 
 store.dispatch(fetchVideo());

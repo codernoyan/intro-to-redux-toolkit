@@ -58,7 +58,9 @@ const videoSlice = createSlice({
     });
     builder.addCase(fetchRelatedVidoes.fulfilled, (state, action) => {
       state.relatedVideos.loading = false;
-      state.relatedVideos.videos = action.payload;
+      state.relatedVideos.videos = action.payload.sort((a, b) => {
+        return Number(b.views.slice(0, -1)) - Number(a.views.slice(0, -1));
+      })
     });
     builder.addCase(fetchRelatedVidoes.rejected, (state, action) => {
       state.relatedVideos.loading = false;
