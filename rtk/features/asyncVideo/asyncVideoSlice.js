@@ -21,7 +21,7 @@ const fetchVideo = createAsyncThunk('video/fetchVideo', async () => {
 });
 
 // fetch related videos
-const fetchRelatedVidoes = createAsyncThunk('relatedVideos/fetchRelatedVidoes', async (videoData) => {
+const fetchRelatedVideos = createAsyncThunk('relatedVideos/fetchRelatedVideos', async (videoData) => {
   const response = await fetch(`http://localhost:9000/videos?tags_like=${videoData.join('&tags_like=')}`);
   const vidoes = await response.json();
   // console.log(videoData);
@@ -52,17 +52,17 @@ const videoSlice = createSlice({
     });
     
     // fetch related vidoes
-    builder.addCase(fetchRelatedVidoes.pending, (state, action) => {
+    builder.addCase(fetchRelatedVideos.pending, (state, action) => {
       state.relatedVideos.loading = true;
       state.relatedVideos.error = '';
     });
-    builder.addCase(fetchRelatedVidoes.fulfilled, (state, action) => {
+    builder.addCase(fetchRelatedVideos.fulfilled, (state, action) => {
       state.relatedVideos.loading = false;
       state.relatedVideos.videos = action.payload.sort((a, b) => {
         return Number(b.views.slice(0, -1)) - Number(a.views.slice(0, -1));
       })
     });
-    builder.addCase(fetchRelatedVidoes.rejected, (state, action) => {
+    builder.addCase(fetchRelatedVideos.rejected, (state, action) => {
       state.relatedVideos.loading = false;
       state.relatedVideos.error = action.error;
     });
@@ -74,4 +74,4 @@ module.exports.fetchVideo = fetchVideo;
 // module.exports.videoActions = videoSlice.actions;
 // fetch related vidoes
 
-module.exports.fetchRelatedVidoes = fetchRelatedVidoes;
+module.exports.fetchRelatedVideos = fetchRelatedVideos;
