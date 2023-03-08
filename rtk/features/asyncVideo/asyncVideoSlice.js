@@ -24,7 +24,7 @@ const fetchVideo = createAsyncThunk('video/fetchVideo', async () => {
 const fetchRelatedVidoes = createAsyncThunk('relatedVideos/fetchRelatedVidoes', async (videoData) => {
   const response = await fetch(`http://localhost:9000/videos?tags_like=${videoData.join('&tags_like=')}`);
   const vidoes = await response.json();
-  console.log(videoData);
+  // console.log(videoData);
   return vidoes;
 });
 
